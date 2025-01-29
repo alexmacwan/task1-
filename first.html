@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      min-height: 200vh; /* For scroll demo */
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem;
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .nav.scrolled {
+      background-color: #2563eb;
+      padding: 0.75rem;
+    }
+
+    .nav-list {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      color: #1f2937;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      transition: all 0.2s ease;
+    }
+
+    .nav.scrolled .nav-link {
+      color: #ffffff;
+    }
+
+    .nav-link:hover {
+      background-color: #f3f4f6;
+      color: #2563eb;
+    }
+
+    .nav.scrolled .nav-link:hover {
+      background-color: #1d4ed8;
+      color: #ffffff;
+    }
+
+    /* Active state */
+    .nav-link.active {
+      background-color: #e5e7eb;
+      color: #2563eb;
+    }
+
+    .nav.scrolled .nav-link.active {
+      background-color: #1d4ed8;
+      color: #ffffff;
+    }
+
+    /* Demo content */
+    .content {
+      max-width: 800px;
+      margin: 100px auto;
+      padding: 2rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a href="#home" class="nav-link active">Home</a>
+      </li>
+      <li class="nav-item">
+        <a href="#about" class="nav-link">About</a>
+      </li>
+      <li class="nav-item">
+        <a href="#services" class="nav-link">Services</a>
+      </li>
+      <li class="nav-item">
+        <a href="#portfolio" class="nav-link">Portfolio</a>
+      </li>
+      <li class="nav-item">
+        <a href="#contact" class="nav-link">Contact</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="content">
+    <h1>Scroll down to see the navigation effect</h1>
+    <p>The navigation bar will change color when you scroll.</p>
+  </div>
+
+  <script>
+    // Get the navigation element
+    const nav = document.querySelector('.nav');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Add scroll event listener
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Add click event listeners to nav links
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Remove active class from all links
+        navLinks.forEach(l => l.classList.remove('active'));
+        // Add active class to clicked link
+        link.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
